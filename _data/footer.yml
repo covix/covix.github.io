@@ -1,0 +1,22 @@
+# - title: Pages
+#   links:
+#     - name: Home
+#       link: /
+#     - name: Portfolio
+#       link: /portfolio/
+#     - name: Blog
+#       link: /blog/
+#     - name: About
+#       link: /about/
+#     - name: Contact
+#       link: /contact/
+- title: Get in Touch
+  links:
+    - name: GitHub
+      link: https://github.com/covix
+      social_icon: GitHub
+      new_window: true
+    - name: LinkedIn
+      link: https://www.linkedin.com/in/luca-coviello/
+      social_icon: LinkedIn
+      new_window: true

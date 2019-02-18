@@ -1,18 +1,76 @@
 ---
-layout: default
+title: Luca Coviello
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+<section class="hero diagonal">
+	<div class="container halves">
+		<div>
+			<ul class="image-list">
+				<li><img src="{{ site.baseurl }}/images/profile.jpg" width="300"></li>
+			</ul>
+		</div>
+		<div>
+			<h2 class="editable">Luca Coviello</h2>
+			<p class="subtext editable">
+				Postgraduate Researcher in <strong>Artificial Intelligence</strong> and <strong>Precision Agriculture</strong>
+			<!-- <p><a class="button alt" href="{{ site.baseurl }}/contact/">Contact Us</a></p> -->
+		</div>
+	</div>
+</section>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+<section class="diagonal patterned">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Some of my work</h3>
+			<p class="editable">I have been working on <strong>Deep Learning</strong> and <strong>Data Science</strong> projects since my Bachelor's Degree Thesis</p>
+			<!-- <p class="editable"><a href="{{ site.baseurl }}/portfolio/">View Full Portfolio &rarr;</a></p> -->
+		</div>
+		<div>
+			<ul class="image-grid">
+				{% for client in site.clients limit: 4 %}
+					<li style="background-color: white;">
+						<!-- <a href="{{ site.baseurl }}{{ client.url }}"> -->
+						{% if client.external_url %}
+							<a href="{{ client.external_url }}" target="_blank">
+						{% else %}
+							<a href="#">
+						{% endif %}
+							<img src="{% include relative-src.html src=client.image_path %}">
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</section>
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<ul class="image-list">
+				<li><img src="{{ site.baseurl }}/images/pytorch-logo-transparent.png" width="300" style="margin-bottom: 30px;"></li>
+				<li><img src="{{ site.baseurl }}/images/tf-logo-transparent.png" width="300" style="margin-bottom: 30px;"></li>
+			</ul>
+		</div>
+		<div>
+			<h3 class="editable">Latest software, greatest perfomance</h3>
+			<p class="editable">Deep Learning models applied to Precision Agriculture and Climate Changes, via Computer Vision and IoT systems.</p>
+		</div>
+	</div>
+</section>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
+<section class="diagonal patterned">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Currently working</h3>
+			<p class="editable">Precision Agriculture and Environmental Sciences Researcher at FBK - MPBA </p>
+			<p class="editable"><a href="https://mpbalab.fbk.eu/">Lab Website &rarr;</a></p>
+		</div>
+		<div>
+			<ul class="image-list">
+				<li><img src="{{ site.baseurl }}/images/fbk-logo.png" width="200" style="margin-bottom: 30px;"></li>
+				<li><img src="{{ site.baseurl }}/images/mpba-logo.png" width="300" style="margin-bottom: 30px;"></li>
+			</ul>
+		</div>
+	</div>
+</section>

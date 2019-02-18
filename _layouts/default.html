@@ -1,51 +1,86 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+<!doctype html>
 
-    {% include meta.html %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+		{% seo %}
+		{% feed_meta %}
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+		<link rel="stylesheet" href="{{ site.baseurl }}/css/screen.css">
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
+		<!-- <link rel="apple-touch-icon" href="{{ site.baseurl }}/apple-touch-icon.png"> -->
+		<!-- <link rel="icon" type="image/png" href="{{ site.baseurl }}/touch-icon.png" sizes="192x192"> -->
+		<!-- <link rel="icon" type="image/png" href="{{ site.baseurl }}/images/favicon.png"> -->
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+		{% if jekyll.environment == 'production' and site.google_analytics_key != '' %}
+			<script>
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', '{{ site.google_analytics_key }}', 'auto');
+				ga('send', 'pageview');
+			</script>
+			<script async src='https://www.google-analytics.com/analytics.js'></script>
+		{% endif %}
+	</head>
+	<body>
+		<!-- <header>
+			<div class="container">
+				<h1 class="company-name"><a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/logo.svg" alt="Urban" width="150"></a></h1>
+				{% include navigation.html %}
+			</div>
+		</header> -->
+		{{ content }}
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+		<footer class="diagonal">
+			<div class="container">
+				<p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong> Update Footer Sections</a></p>
 
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
-          </nav>
-        </header>
-      </div>
-    </div>
+				<div class="footer-columns">
+					{% for column in site.data.footer %}
+						<ul class="footer-links">
+							<li>
+								<h2>{{ column.title }}</h2>
+							</li>
+							{% for link in column.links %}
+								<li>
+									<a {% if link.new_window %}target="_blank"{% endif %} href="{% include relative-src.html src=link.link %}" {% if link.social_icon %}class="{{ link.social_icon | slugify }}-icon"{% endif %}>
+										{% if link.social_icon %}
+											{% include social-icon.html icon=link.social_icon %}
+										{% endif %}
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
+										{{ link.name }}
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					{% endfor %}
+<!-- 
+					<ul class="footer-links">
+						<li>
+							<h2>{{ site.data.company.title }}</h2>
+						</li>
+						<li>{{ site.data.company.description }}</li>
+						<li><a href="{{ site.baseurl }}/feed.xml">{% include social-icon.html icon="RSS" %} Subscribe with RSS</a></li>
+					</ul> -->
+				</div>
+			</div>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
-    </div>
+			<div class="legal-line">
+				<p class="container">
+					&copy; {{ site.time | date: '%Y' }} {{ site.data.company.title }}
+					&bull;
+					Template by <a href="http://cloudcannon.com/">CloudCannon</a>
+				</p>
+			</div>
+		</footer>
 
-    {% include analytics.html %}
-  </body>
+
+		<script>
+			document.getElementById("open-nav").onclick = function () {
+				document.body.classList.toggle("nav-open");
+				return false;
+			};
+		</script>
+	</body>
 </html>
